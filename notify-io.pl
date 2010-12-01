@@ -34,6 +34,7 @@ sub notify {
 
   my $req = POST $url, [
     text => $msg,
+    title => "Irssi",
     icon => $icon,
     tags => $is_sticky ? "sticky" : "",
     api_key => $api_key,
