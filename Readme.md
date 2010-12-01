@@ -14,4 +14,5 @@ notifications to one or many clients, such as growl, email, jabber, or sms.
     # Optional
     /set notify_io_sticky {1,0}
     /set notify_io_icon {notification_icon_url}
+    /set notify_io_api_url {custom_api_url}
 

@@ -14,12 +14,12 @@ $VERSION = '1.00';
     license     => 'BSD',
 );
 
+Irssi::settings_add_str($IRSSI{'name'}, "notify_io_api_url", "http://api.notify.io/v1/notify/");
 Irssi::settings_add_str($IRSSI{'name'}, "notify_io_icon", "http://jb55.com/img/misc/irssi.png");
 Irssi::settings_add_str($IRSSI{'name'}, "notify_io_api_key", "");
 Irssi::settings_add_str($IRSSI{'name'}, "notify_io_email", "");
 Irssi::settings_add_bool($IRSSI{'name'}, "notify_io_sticky", 1);
 
-my $api_url = "http://api.notify.io/v1/notify/";
 my $ua = LWP::UserAgent->new(agent => "$IRSSI{'name'}.pl/$VERSION", timeout => 10);
 
 sub notify {
@@ -29,6 +29,7 @@ sub notify {
   my $email = Irssi::settings_get_str("notify_io_email");
   my $is_sticky = Irssi::settings_get_bool("notify_io_sticky");
   my $icon = Irssi::settings_get_str("notify_io_icon");
+  my $api_url = Irssi::settings_get_str("notify_io_api_url");
 
   my $url = $api_url . md5_hex($email);
 
