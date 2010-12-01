@@ -3,7 +3,7 @@
 
 irssi-notify-io is an irssi plugin that allows you to send notifications to
 [notify.io](http://notify.io). notify-io is a web service that forwards
-notifications to one or many clients, such as growl.
+notifications to one or many clients, such as growl, email, jabber, or sms.
 
 # Setup
 
