@@ -49,12 +49,16 @@ sub priv_msg_handler {
   notify("~" . $nick . ": " . $msg);
 }
 
-sub pub_msg_handler {
-	my ($server, $msg, $nick, $address) = @_;
-  if ($msg =~ /$server->{nick}/i) {
-    notify($nick . ": " . $msg);
+sub highlight_handler {
+	my ($dest, $text, $stripped) = @_;
+
+  if ($dest->{level} & (MSGLEVEL_HILIGHT | MSGLEVEL_MSGS) && ($dest->{level} & MSGLEVEL_NOHILIGHT) == 0) {
+    if ($dest->{level} & MSGLEVEL_PUBLIC) {
+      notify($dest->{target} . ":" . $stripped);
+    }
   }
 }
 
+
 Irssi::signal_add_last('message private', \&priv_msg_handler);
-Irssi::signal_add_last('message public', \&pub_msg_handler);
+Irssi::signal_add_last('print text', \&highlight_handler);
