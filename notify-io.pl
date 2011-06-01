@@ -45,16 +45,17 @@ sub notify {
 }
 
 sub priv_msg_handler {
-	my ($server, $msg, $nick, $address) = @_;
+  my ($server, $msg, $nick, $address) = @_;
   notify("~" . $nick . ": " . $msg);
 }
 
 sub highlight_handler {
-	my ($dest, $text, $stripped) = @_;
+  my ($dest, $text, $stripped) = @_;
+  my $nick = Irssi::parse_special('$;');
 
   if ($dest->{level} & (MSGLEVEL_HILIGHT | MSGLEVEL_MSGS) && ($dest->{level} & MSGLEVEL_NOHILIGHT) == 0) {
     if ($dest->{level} & MSGLEVEL_PUBLIC) {
-      notify($dest->{target} . ":" . $stripped);
+      notify($dest->{target} . " ~" . $nick . ": " . $stripped);
     }
   }
 }
